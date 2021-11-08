@@ -46,24 +46,10 @@ def dnaToRna(dna, startIndex):
         x = i.replace("T","U")
         b.append(x)
     return b
-
-
-        
-        
-        
-
-        
-        
-        
     
-        
-        
     
-
-
-   
-
-
+    
+    
 '''
 makeCodonDictionary(filename)
 #3 [Check6-1]
@@ -80,12 +66,6 @@ def makeCodonDictionary(filename):
             y = i.replace("T","U")
 
             x[y] = a
-   
-
-       
-       
-
-    
     return x
 
 
@@ -96,7 +76,24 @@ Parameters: list of strs ; dict mapping strs to strs
 Returns: list of strs
 '''
 def generateProtein(codons, codonD):
-    return
+    a = []
+    if codons[0] == "AUG":
+        a.append("Start")
+    for i in range(1,len(codons)):
+        if codons[i] in codonD.keys():
+            a.append(codonD[codons[i]])
+    
+    return a
+    
+
+        
+    
+       
+        
+
+
+
+   
 
 
 '''
@@ -238,7 +235,7 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-    test.testMakeCodonDictionary()
+    test.testGenerateProtein()
 
     ## Uncomment these for Week 2 ##
     """
