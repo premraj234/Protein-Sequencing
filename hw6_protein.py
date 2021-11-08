@@ -137,9 +137,14 @@ Parameters: 2D list of strs ; 2D list of strs
 Returns: 2D list of strs
 '''
 def commonProteins(proteinList1, proteinList2):
-    
+    x = []
 
-    return 
+    for i in proteinList1 :
+        for j in proteinList2:
+            if i == j and i not in x:
+                x.append(j)
+
+    return x
 
 
 '''
