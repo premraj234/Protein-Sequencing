@@ -154,7 +154,13 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def combineProteins(proteinList):
-    return
+    x = []
+    for i in proteinList:
+        for j in i:
+            if i not in x:
+                x.append(j)
+    return x
+
 
 
 '''
@@ -164,7 +170,9 @@ Parameters: list of strs
 Returns: dict mapping strs to ints
 '''
 def aminoAcidDictionary(aaList):
-    return
+    
+
+    return 
 
 
 '''
@@ -257,7 +265,7 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-    test.testCommonProteins()
+    test.testAminoAcidDictionary()
 
     ## Uncomment these for Week 2 ##
     """
