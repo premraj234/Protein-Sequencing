@@ -4,6 +4,7 @@ Name:
 Roll Number:
 """
 
+from matplotlib.pyplot import title
 import hw6_protein_tests as test
 
 project = "Protein" # don't edit this
@@ -303,8 +304,20 @@ createChart(xLabels, freqList1, label1, freqList2, label2, edgeList=None)
 Parameters: list of strs ; list of floats ; str ; list of floats ; str ; [optional] list of strs
 Returns: None
 '''
-def createChart(xLabels, freqList1, label1, freqList2, label2, edgeList=None):
+import numpy as np
+def createChart(xLabels, freqList1, label1, freqList2, label2):
     import matplotlib.pyplot as plt
+    w = 0.5  # the width of the bars
+    x = np.arange(len(xLabels))
+
+    plt.bar(x, freqList1, width=-w, align='edge', label=label1)
+    plt.bar(x, freqList2, width= w, align='edge', label=label2)
+
+    plt.xticks(ticks=list(range(len(xLabels))), labels=xLabels, rotation = "horizontal")
+    plt.legend(loc = "upper left")
+    plt.title("amino acids")
+
+    plt.show()
     return
 
 
@@ -315,6 +328,8 @@ Parameters: list of strs ; 2D list of values
 Returns: list of strs
 '''
 def makeEdgeList(labels, biggestDiffs):
+    
+
     return
 
 
@@ -344,13 +359,13 @@ if __name__ == "__main__":
     # test.week2Tests()
     # print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
     # test.runWeek2()
-    test.testSetupChartData()
+    # test.testSetupChartData()
     
 
     ## Uncomment these for Week 3 ##
-    """
+    
     print("\n" + "#"*15 + " WEEK 3 TESTS " +  "#" * 16 + "\n")
     test.week3Tests()
     print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
     runFullProgram()
-    """
+    
