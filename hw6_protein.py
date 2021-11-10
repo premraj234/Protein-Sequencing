@@ -305,13 +305,13 @@ Parameters: list of strs ; list of floats ; str ; list of floats ; str ; [option
 Returns: None
 '''
 import numpy as np
-def createChart(xLabels, freqList1, label1, freqList2, label2):
+def createChart(xLabels, freqList1, label1, freqList2, label2, edgeList=None):
     import matplotlib.pyplot as plt
-    w = 0.5  # the width of the bars
+    w = 0.3  # the width of the bars
     x = np.arange(len(xLabels))
 
-    plt.bar(x, freqList1, width=-w, align='edge', label=label1)
-    plt.bar(x, freqList2, width= w, align='edge', label=label2)
+    plt.bar(x, freqList1, width=-w, align='edge', label=label1, edgecolor=edgeList)
+    plt.bar(x, freqList2, width= w, align='edge', label=label2, edgecolor=edgeList)
 
     plt.xticks(ticks=list(range(len(xLabels))), labels=xLabels, rotation = "horizontal")
     plt.legend(loc = "upper left")
@@ -328,9 +328,20 @@ Parameters: list of strs ; 2D list of values
 Returns: list of strs
 '''
 def makeEdgeList(labels, biggestDiffs):
-    
+    a = [ ]
+    b = [ ]
+    for i in range(len(biggestDiffs)):
+        if biggestDiffs[i][0] not in a:
+            a.append(biggestDiffs[i][0])
+    for x in range(len(labels)):
+        if labels[x] in a:
+            b.append("black")
+        else:
+            b.append("white")
 
-    return
+    
+    
+    return b
 
 
 '''
@@ -359,13 +370,13 @@ if __name__ == "__main__":
     # test.week2Tests()
     # print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
     # test.runWeek2()
-    # test.testSetupChartData()
+    test.testMakeEdgeList()
     
 
     ## Uncomment these for Week 3 ##
     
-    print("\n" + "#"*15 + " WEEK 3 TESTS " +  "#" * 16 + "\n")
-    test.week3Tests()
-    print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
-    runFullProgram()
+    # print("\n" + "#"*15 + " WEEK 3 TESTS " +  "#" * 16 + "\n")
+    # test.week3Tests()
+    # print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
+    # runFullProgram()
     
