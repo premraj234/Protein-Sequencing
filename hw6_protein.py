@@ -105,13 +105,16 @@ Returns: 2D list of strs
 def synthesizeProteins(dnaFilename, codonFilename):
     x = readFile(dnaFilename)
     y = makeCodonDictionary(codonFilename)
+
     i = 0
     a = 0
     b = [ ]
     while i < len(x):
         if x[i:i+3] == "ATG":
             c = dnaToRna(x,i)
+            
             d = generateProtein(c,y)
+           
             b.append(d)
             i = i+3*len(c)
         else:
@@ -157,9 +160,10 @@ def combineProteins(proteinList):
     x = []
     for i in proteinList:
         for j in i:
-            if i not in x:
                 x.append(j)
     return x
+
+   
 
 
 
@@ -188,7 +192,28 @@ Parameters: 2D list of strs ; 2D list of strs ; float
 Returns: 2D list of values
 '''
 def findAminoAcidDifferences(proteinList1, proteinList2, cutoff):
-    return
+    combine1,combine2 = combineProteins(proteinList1), combineProteins(proteinList2)
+    dict1,dict2 = aminoAcidDictionary(combine1),aminoAcidDictionary(combine2)
+    temp,result=[],[]         
+    freq_dict1,freq_dict2={},{}    
+    for i in dict1:
+        freq_dict1[i] = dict1[i]/len(combine1)
+        if i not in temp and i !="Start" and i !="Stop":
+            temp.append(i)
+    for a in dict2:
+        freq_dict2[a] = dict2[a]/len(combine2)
+        if a not in temp and a !="Start" and a!="Stop":
+            temp.append(a)
+    for ac in temp:
+        freq1,freq2=0,0
+        if ac in freq_dict1:
+            freq1= freq_dict1[ac]
+        if ac in freq_dict2:
+            freq2= freq_dict2[ac]
+        difference = freq2-freq1
+        if difference < -cutoff or difference > cutoff  :
+            result.append([ac , freq1, freq2])
+    return result
 
 
 '''
@@ -198,6 +223,10 @@ Parameters: 2D list of strs ; 2D list of values
 Returns: None
 '''
 def displayTextResults(commonalities, differences):
+    
+
+
+
     return
 
 
@@ -219,16 +248,20 @@ Parameters: 2D list of strs ; 2D list of strs
 Returns: list of strs
 '''
 def makeAminoAcidLabels(proteinList1, proteinList2):
-    return
+    
 
 
-'''
+    
+
+
+    '''
 setupChartData(labels, proteinList)
 #3 [Hw6]
 Parameters: list of strs ; 2D list of strs
 Returns: list of floats
 '''
 def setupChartData(labels, proteinList):
+
     return
 
 
@@ -271,15 +304,15 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-    test.testAminoAcidDictionary()
+    # test.testCombineProteins()
 
     ## Uncomment these for Week 2 ##
-    """
-    print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
-    test.week2Tests()
-    print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
-    runWeek2()
-    """
+    
+    # print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
+    # test.week2Tests()
+    # print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
+    test.runWeek2()
+    
 
     ## Uncomment these for Week 3 ##
     """
