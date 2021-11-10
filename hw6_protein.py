@@ -223,6 +223,17 @@ Parameters: 2D list of strs ; 2D list of values
 Returns: None
 '''
 def displayTextResults(commonalities, differences):
+    for i in commonalities:
+        commonProteins = ""
+        x = i[1:len(i)-1]
+        count = 0
+        for j in x:
+            commonProteins+=j
+            count+=1
+            if count !=len(x):
+                commonProteins+="-"
+    for a in differences:
+        print(a[0],":", round(a[1]*100,2),"% in seq1,",round(a[2]*100,2),"% in seq2")
     
 
 
